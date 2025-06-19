@@ -58,7 +58,7 @@ public class SnakeGame extends Application{
 		Label instructions = new Label("1. use Arrow Keys.\n\n"
 				+ "2.avoid hitting the walls.\n\n"
 				+ "3.avoid self-eating.\n\n"
-				+"CLICK START THE GAME TO BEGIN");
+				+"click START THE GAME button to begin");
 		instructions.setStyle("-fx-font-size: 16px; fx-text-alignement: center;");
 		Button startButton = new Button("START THE GAME");
 		welcomePane = new VBox(30,welcomeLabel,instructions,startButton);
