@@ -64,7 +64,7 @@ public class SnakeGame extends Application{
 		welcomePane = new VBox(30,welcomeLabel,instructions,startButton);
 		welcomePane.setAlignment(Pos.CENTER);
 		pane.setCenter(welcomePane);
-		
+		// the start button  removes the welcome pane and sets the gameboard and the canvas
 		startButton.setOnAction(e->{
 			pane.setCenter(canvas);
 			pane.setTop(scoreLabel); 
@@ -110,7 +110,7 @@ public class SnakeGame extends Application{
 			                direction = Direction.LEFT;
 			            }
 			            break;
-			        default:
+			        default:// when the user clicks an invalid key
 			            alert.show();
 			            delay.setOnFinished(event1 -> alert.close());
 			            delay.play();
@@ -153,20 +153,17 @@ public class SnakeGame extends Application{
 		 public void handle(long now){
 			   if(now-lastUpdate>200_000_000) {
 				   update();
-	               draw(drw);
-				   lastUpdate=now;
- 
+	                           draw(drw);
+				   lastUpdate=now; 
 	   }  
 	 }
-  };
-	   
+  };	
 	   primaryStage.setScene(scene);
 	   primaryStage.setTitle("ANANIE SNAKE GAME");
 	   primaryStage.show();
 	   pane.setFocusTraversable(true);
 	   pane.requestFocus();
-	}
-	
+	}	
 private void resetGame() {
 		snake.clear();
 		snake.add(new Point(6,7)); 
@@ -181,7 +178,7 @@ private void resetGame() {
         restartButton.setDisable(false);
        
 	}
-
+// this method redraws the snake whenever the direction is changed by the user
 public void update() {
 	Point head = snake.get(0);
 	Point newHead = switch(direction) {
@@ -209,7 +206,7 @@ public void update() {
 	} else {
 	snake.removeLast(); }
 }
-
+// this method draws the snake by taking the Points in the LinkedList and giving the rectangular form and the Points spawned an oval form
 public void draw(GraphicsContext dr) {
 	// clean the canvas
 	dr.setFill(Color.BLUEVIOLET);
@@ -238,12 +235,12 @@ public void gameOver(String reason) {
 	pause.setOnFinished(e->alert.close());
 	alert.show();
 	pause.play();
-	
-}
+    }
+	// this method  displays a oval food at any area on the canvas using java random integers
+	// when the generated Point is already on the snake, the method keeps generating other Points
 public void spawnFood() {
- Point newFood;
- Random rand = new Random();
- 
+ Point newFood;// 
+ Random rand = new Random(); 
  do { 
 	 int x=rand.nextInt(WIDTH);
 	 int y=rand.nextInt(HEIGHT);
